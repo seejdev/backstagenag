@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Past Shows
+description: Shows that have played Backstage @ NAG in Londonderry, Vermont.
+permalink: /events/past/
+---
+<div class="container py-5">
+  <h1 class="display-4">Past shows</h1>
+  {%- set groups = collections.pastEvents | groupByYear %}
+  {%- if groups.length %}
+  {%- for group in groups %}
+  <h2 class="bsn-section-title mt-5">{{ group.label }}</h2>
+  <div class="bsn-card-grid">
+    {%- for event in group.items %}
+    {% include "partials/event-card.njk" %}
+    {%- endfor %}
+  </div>
+  {%- endfor %}
+  {%- else %}
+  <p class="lead text-body-secondary">No past shows yet.</p>
+  {%- endif %}
+  <p class="mt-5"><a href="/events/">&larr; Upcoming shows</a></p>
+</div>

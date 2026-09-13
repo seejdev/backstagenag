@@ -42,3 +42,28 @@ test("404 page renders inside the site shell", () => {
   assert.match(html, /href="\/events\/"/);
   assert.match(html, /href="\/css\/index\.css"/);
 });
+
+test("event listings split upcoming from past at BSN_BUILD_NOW", () => {
+  const upcoming = read("events/index.html");
+  const past = read("events/past/index.html");
+  for (const title of ["The High Breaks", "Open Mic Night"]) {
+    assert.match(upcoming, new RegExp(title), `${title} should be upcoming`);
+    assert.doesNotMatch(past, new RegExp(title), `${title} should not be past`);
+  }
+  for (const title of ["Green Mountain Ramblers", "Summer Kickoff Jam"]) {
+    assert.match(past, new RegExp(title), `${title} should be past`);
+    assert.doesNotMatch(upcoming, new RegExp(title), `${title} should not be upcoming`);
+  }
+  assert.match(upcoming, /October 2026/);
+  assert.match(past, /<h2[^>]*>2026<\/h2>/);
+});
+
+test("event detail pages keep the date in the URL and render fields", () => {
+  assert.ok(exists("events/2026-10-03-the-high-breaks/index.html"));
+  const html = read("events/2026-10-03-the-high-breaks/index.html");
+  assert.match(html, /Saturday, October 3, 2026/);
+  assert.match(html, /Doors<\/span> 7:00 PM/);
+  assert.match(html, /\/img\/events\/example-poster\.jpg/);
+  assert.match(html, /href="https:\/\/example\.com\/tickets"/);
+  assert.match(html, /<title>The High Breaks · Backstage @ NAG<\/title>/);
+});
