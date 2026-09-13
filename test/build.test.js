@@ -105,3 +105,13 @@ test("home page shows next show, coming up, photos, and video", () => {
   assert.match(html, /youtube-nocookie\.com\/embed\//);
   assert.match(html, /<title>Backstage @ NAG<\/title>/);
 });
+
+test("sitemap and robots are generated and exclude the 404", () => {
+  const sitemap = read("sitemap.xml");
+  assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/events\/2026-10-03-the-high-breaks\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/venue\/<\/loc>/);
+  assert.doesNotMatch(sitemap, /404/);
+  const robots = read("robots.txt");
+  assert.match(robots, /Sitemap: https:\/\/backstagenag\.netlify\.app\/sitemap\.xml/);
+  assert.ok(exists("img/site/og.jpg"));
+});
