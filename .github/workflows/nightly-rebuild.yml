@@ -1,0 +1,21 @@
+name: Nightly rebuild
+
+# Keeps the upcoming/past split fresh even when nothing is pushed.
+# Inert until the NETLIFY_BUILD_HOOK repository secret is set.
+on:
+  schedule:
+    - cron: "0 9 * * *" # 09:00 UTC = 05:00 Eastern (04:00 during EST)
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    env:
+      HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+    steps:
+      - name: Trigger Netlify build
+        if: env.HOOK != ''
+        run: curl -fsS -X POST -d '{}' "$HOOK"
+      - name: Nothing to do
+        if: env.HOOK == ''
+        run: echo "NETLIFY_BUILD_HOOK secret is not set; skipping."
