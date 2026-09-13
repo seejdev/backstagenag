@@ -568,7 +568,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { youtubeId } from "../lib/videos.js";
 
-const ID = "dQw4w9WgXcQ";
+const ID = "tXNsWsEE7S0";
 
 test("accepts a bare 11-character id", () => {
   assert.equal(youtubeId(ID), ID);
@@ -1483,7 +1483,7 @@ Expected: FAIL — `ENOENT ... videos/index.html`.
 
 ```json
 [
-  { "title": "Demo video — replace me", "youtube": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
+  { "title": "The Future of 11ty — Zach Leatherman (11ty Conf 2024)", "youtube": "https://www.youtube.com/watch?v=tXNsWsEE7S0" }
 ]
 ```
 

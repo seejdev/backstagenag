@@ -84,7 +84,7 @@ test("videos page embeds one privacy-enhanced iframe per entry", () => {
   const iframes = html.match(/youtube-nocookie\.com\/embed\/[A-Za-z0-9_-]{11}/g) || [];
   assert.equal(iframes.length, 1);
   assert.match(html, /loading="lazy"/);
-  assert.match(html, /title="Demo video — replace me"/);
+  assert.match(html, /title="The Future of 11ty — Zach Leatherman \(11ty Conf 2024\)"/);
 });
 
 test("venue page renders prose and structured facts", () => {
