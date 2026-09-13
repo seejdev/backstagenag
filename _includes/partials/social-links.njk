@@ -1,0 +1,7 @@
+{%- if site.social and site.social.length %}
+<ul class="list-inline bsn-social mb-3">
+  {%- for s in site.social %}
+  <li class="list-inline-item"><a href="{{ s.url }}" rel="me noopener" aria-label="{{ site.name }} on {{ s.name }}" title="{{ s.name }}"><i class="bi bi-{{ s.icon }}" aria-hidden="true"></i></a></li>
+  {%- endfor %}
+</ul>
+{%- endif %}

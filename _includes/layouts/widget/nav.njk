@@ -1,0 +1,23 @@
+{%- set navItems = [
+  { url: "/", label: "Home" },
+  { url: "/events/", label: "Events" },
+  { url: "/gallery/", label: "Gallery" },
+  { url: "/videos/", label: "Videos" },
+  { url: "/venue/", label: "Venue" }
+] %}
+<nav class="navbar navbar-expand-md bsn-nav">
+  <div class="container">
+    <a class="navbar-brand bsn-brand" href="/">{{ site.name }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        {%- for item in navItems %}
+        {%- set active = (page.url == item.url) if item.url == "/" else page.url.startsWith(item.url) %}
+        <li class="nav-item"><a class="nav-link{% if active %} active{% endif %}"{% if active %} aria-current="page"{% endif %} href="{{ item.url }}">{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>

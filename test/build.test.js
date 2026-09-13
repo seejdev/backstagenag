@@ -33,3 +33,12 @@ function read(rel) {
 test("build completes", () => {
   assert.ok(fs.existsSync(outDir));
 });
+
+test("404 page renders inside the site shell", () => {
+  assert.ok(exists("404.html"), "404.html missing");
+  const html = read("404.html");
+  assert.match(html, /<html lang="en" data-bs-theme="dark">/);
+  assert.match(html, /Backstage @ NAG/);
+  assert.match(html, /href="\/events\/"/);
+  assert.match(html, /href="\/css\/index\.css"/);
+});
