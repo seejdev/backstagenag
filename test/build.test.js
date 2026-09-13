@@ -30,6 +30,27 @@ function read(rel) {
   return fs.readFileSync(path.join(outDir, rel), "utf8");
 }
 
+// The calendar date BSN_BUILD_NOW pins, in the venue's time zone.
+const TODAY = "2026-09-13";
+
+// Read the real events/ directory rather than hard-coding titles, so that
+// editing or replacing show content does not break the suite.
+function seededEvents() {
+  const dir = path.join(import.meta.dirname, "..", "events");
+  return fs
+    .readdirSync(dir)
+    .filter((name) => name.endsWith(".md"))
+    .map((name) => {
+      const src = fs.readFileSync(path.join(dir, name), "utf8");
+      return {
+        slug: name.replace(/\.md$/, ""),
+        title: src.match(/^title:\s*(.+)$/m)[1].trim(),
+        day: src.match(/^date:\s*(\d{4}-\d{2}-\d{2})\s*$/m)[1],
+      };
+    })
+    .sort((a, b) => (a.day < b.day ? -1 : 1));
+}
+
 test("build completes", () => {
   assert.ok(fs.existsSync(outDir));
 });
@@ -46,14 +67,22 @@ test("404 page renders inside the site shell", () => {
 test("event listings split upcoming from past at BSN_BUILD_NOW", () => {
   const upcoming = read("events/index.html");
   const past = read("events/past/index.html");
-  for (const title of ["The High Breaks", "Open Mic Night"]) {
-    assert.match(upcoming, new RegExp(title), `${title} should be upcoming`);
-    assert.doesNotMatch(past, new RegExp(title), `${title} should not be past`);
+  const events = seededEvents();
+
+  assert.ok(
+    events.some((e) => e.day >= TODAY) && events.some((e) => e.day < TODAY),
+    "fixture needs at least one upcoming and one past event to be meaningful",
+  );
+
+  for (const event of events) {
+    const href = `href="/events/${event.slug}/"`;
+    const [wanted, unwanted] = event.day >= TODAY ? [upcoming, past] : [past, upcoming];
+    assert.ok(wanted.includes(href), `${event.slug} (${event.day}) is missing from its listing`);
+    assert.ok(!unwanted.includes(href), `${event.slug} (${event.day}) is in the wrong listing`);
+    assert.match(wanted, new RegExp(event.title), `${event.title} did not render`);
+    assert.ok(exists(`events/${event.slug}/index.html`), `no detail page for ${event.slug}`);
   }
-  for (const title of ["Green Mountain Ramblers", "Summer Kickoff Jam"]) {
-    assert.match(past, new RegExp(title), `${title} should be past`);
-    assert.doesNotMatch(upcoming, new RegExp(title), `${title} should not be upcoming`);
-  }
+
   assert.match(upcoming, /October 2026/);
   assert.match(past, /<h2[^>]*>2026<\/h2>/);
 });
@@ -99,7 +128,8 @@ test("venue page renders prose and structured facts", () => {
 test("home page shows next show, coming up, photos, and video", () => {
   const html = read("index.html");
   assert.match(html, /Next show/);
-  assert.match(html, /href="\/events\/2026-10-03-the-high-breaks\/"/);
+  const nextUp = seededEvents().find((e) => e.day >= TODAY);
+  assert.match(html, new RegExp(`href="/events/${nextUp.slug}/"`), "next show should link to the soonest upcoming event");
   assert.match(html, /Coming up/);
   assert.equal((html.match(/class="glightbox gallery-item"/g) || []).length, 6);
   assert.match(html, /youtube-nocookie\.com\/embed\//);
