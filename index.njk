@@ -5,7 +5,9 @@ layout: layouts/base.njk
 <section class="bsn-hero">
   <div class="container py-5">
     <p class="bsn-kicker">Live music · Londonderry, Vermont</p>
-    <h1 class="bsn-hero-title">{{ site.name }}</h1>
+    <h1 class="bsn-hero-title">
+      <img class="bsn-hero-logo" src="/img/site/logo.png" alt="{{ site.name }}" width="1200" height="742">
+    </h1>
     <p class="lead">{{ site.tagline }}</p>
     {%- if nextShow.length %}
     <p class="bsn-kicker mt-4">Next show</p>

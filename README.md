@@ -59,6 +59,9 @@ Any YouTube URL works (`watch?v=`, `youtu.be/`, `shorts/`, `embed/`, `live/`), o
 - Social links: `_data/site.json` → `social`. Each entry is `{ "name": "Instagram", "url": "https://…", "icon": "instagram" }`; `icon` is a name from https://icons.getbootstrap.com/ (`facebook`, `instagram`, `youtube`, `tiktok`, `spotify`, …).
 - Venue prose: `venue.md`.
 - Brand accent color: `--bsn-accent` at the top of `css/index.css`.
+- Logo: the master artwork lives in `brand/` (not published). The web versions in `img/site/`
+  (`logo.png` for the navbar and home page, `favicon.png`, `apple-touch-icon.png`, `og.jpg` for
+  social shares) are generated from it. Replacing the logo means regenerating those four files.
 
 ## Preview locally
 

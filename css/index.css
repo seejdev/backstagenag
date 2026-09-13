@@ -26,7 +26,8 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 
 /* Nav */
 .bsn-nav { background: var(--bsn-surface); border-bottom: 1px solid var(--bsn-line); }
-.bsn-brand { font-size: 1.75rem; color: var(--bsn-accent) !important; }
+.bsn-brand { font-size: 1.75rem; color: var(--bsn-accent) !important; padding-top: 0; padding-bottom: 0; }
+.bsn-brand-logo { display: block; height: 2.5rem; width: auto; }
 .bsn-nav .nav-link { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; }
 .bsn-nav .nav-link.active { color: var(--bsn-accent); }
 
@@ -37,7 +38,8 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
     var(--bs-body-bg);
   border-bottom: 1px solid var(--bsn-line);
 }
-.bsn-hero-title { font-family: var(--bsn-display); font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.95; margin: 0; }
+.bsn-hero-title { margin: 0; line-height: 0; }
+.bsn-hero-logo { display: block; width: min(34rem, 100%); height: auto; }
 .bsn-kicker { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; color: var(--bsn-accent); margin-bottom: 0.5rem; }
 
 /* Sections */
