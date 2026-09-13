@@ -11,7 +11,7 @@ Placeholders still in the site. Each one renders visibly as `TODO:` or as exampl
 - `_data/venue.json` — email, hours, capacity, age policy, cover-charge norms, parking. Confirm the address and phone (they came from public listings).
 - `_data/site.json` — `social`: add Backstage's own Facebook / Instagram / YouTube URLs (see "Change hours, address, or social links"). `url`: change once the real domain is chosen.
 - `events/` — the four `.md` files are examples. Delete them once real shows are in.
-- `img/gallery/` — the six `placeholder-*.jpg` images. Delete them once real photos are in.
+- `img/gallery/` — the six placeholder photos (`2026-*-placeholder-*-01.jpg`). Delete them once real photos are in.
 - `_data/videos.json` — the one demo entry.
 - `venue.md` — the prose paragraphs.
 
@@ -50,7 +50,7 @@ Add a line to the **top** of `_data/videos.json` (top = newest):
 { "title": "The High Breaks — full set", "youtube": "https://www.youtube.com/watch?v=XXXXXXXXXXX" }
 ```
 
-Any YouTube URL works (`watch?v=`, `youtu.be/`, `shorts/`, `embed/`), or just the 11-character video ID. Mind the commas between entries.
+Any YouTube URL works (`watch?v=`, `youtu.be/`, `shorts/`, `embed/`, `live/`), or just the 11-character video ID. Mind the commas between entries.
 
 ## Change hours, address, or social links
 
@@ -75,7 +75,7 @@ Requires Node 24 (`.nvmrc`).
 
 Netlify is connected to this repository. Every push to `main` runs `npm run build` and publishes `_site/` (see `netlify.toml`).
 
-Because "upcoming vs. past" is decided at build time, a show only moves to Past Shows when the site rebuilds. Pushing any change triggers that. To guarantee it happens nightly even with no pushes: in Netlify, create a build hook (Site settings → Build & deploy → Build hooks), then add its URL as a GitHub repository secret named `NETLIFY_BUILD_HOOK`. `.github/workflows/nightly-rebuild.yml` pings it at 5 AM Eastern and does nothing until that secret exists.
+Because "upcoming vs. past" is decided at build time, a show only moves to Past Shows when the site rebuilds. Pushing any change triggers that. To guarantee it happens nightly even with no pushes: in Netlify, create a build hook (Site settings → Build & deploy → Build hooks), then add its URL as a GitHub repository secret named `NETLIFY_BUILD_HOOK`. `.github/workflows/nightly-rebuild.yml` pings it at 5 AM Eastern (4 AM during EST) and does nothing until that secret exists.
 
 ## Layout of the repository
 

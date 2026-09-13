@@ -146,7 +146,7 @@ Added:
 
 - `layouts/page.njk` — extends base; container, `<h1>{{ title }}</h1>`, content. Used by `venue.md` and `404.md`.
 - `layouts/event.njk` — extends base; event detail as described in §4.
-- `layouts/venue.njk` — chains onto `page.njk`; renders the Markdown prose, then includes `partials/venue-facts.njk`.
+- `layouts/venue.njk` — extends `layouts/base.njk` directly (not `page.njk`, whose `.bsn-prose { max-width: 70ch }` would squeeze the venue facts grid); renders the Markdown prose, then includes `partials/venue-facts.njk`.
 - `partials/venue-facts.njk` — the structured blocks from `venue.json` (address, hours, capacity, contact).
 - `partials/lightbox.njk` — the GLightbox CSS/JS loader; included on `/gallery/` and on `/` (which also renders gallery thumbnails).
 - `partials/event-card.njk` — one event as a poster-style card (date block, title, meta line, link). Used by home and both event listings.
