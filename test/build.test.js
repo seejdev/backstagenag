@@ -95,3 +95,13 @@ test("venue page renders prose and structured facts", () => {
   assert.match(html, /<h2 class="h4">Hours<\/h2>/);
   assert.match(html, /Open in maps/);
 });
+
+test("home page shows next show, coming up, photos, and video", () => {
+  const html = read("index.html");
+  assert.match(html, /Next show/);
+  assert.match(html, /href="\/events\/2026-10-03-the-high-breaks\/"/);
+  assert.match(html, /Coming up/);
+  assert.equal((html.match(/class="glightbox gallery-item"/g) || []).length, 6);
+  assert.match(html, /youtube-nocookie\.com\/embed\//);
+  assert.match(html, /<title>Backstage @ NAG<\/title>/);
+});

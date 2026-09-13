@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+---
+{%- set nextShow = collections.upcomingEvents | head(1) %}
+<section class="bsn-hero">
+  <div class="container py-5">
+    <p class="bsn-kicker">Live music · Londonderry, Vermont</p>
+    <h1 class="bsn-hero-title">{{ site.name }}</h1>
+    <p class="lead">{{ site.tagline }}</p>
+    {%- if nextShow.length %}
+    <p class="bsn-kicker mt-4">Next show</p>
+    <p class="fs-3 mb-0"><a class="link-light" href="{{ nextShow[0].url }}">{{ nextShow[0].data.title }}</a> <span class="text-body-secondary">— {{ nextShow[0].date | readableDate }}</span></p>
+    {%- else %}
+    <p class="text-body-secondary mt-4">No shows scheduled right now — check back soon.</p>
+    {%- endif %}
+    <div class="mt-4">
+      <a class="btn btn-accent btn-lg me-2" href="/events/">See all shows</a>
+      <a class="btn btn-outline-light btn-lg" href="/venue/">Find the room</a>
+    </div>
+  </div>
+</section>
+
+{%- set comingUp = collections.upcomingEvents | head(4) %}
+{%- if comingUp.length %}
+<section class="container py-5">
+  <h2 class="bsn-section-title">Coming up <a class="bsn-more" href="/events/">All shows</a></h2>
+  <div class="bsn-card-grid">
+    {%- for event in comingUp %}
+    {% include "partials/event-card.njk" %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if gallery.length %}
+<section class="container py-5">
+  <h2 class="bsn-section-title">Photos <a class="bsn-more" href="/gallery/">See all</a></h2>
+  <div class="bsn-gallery">
+    {%- for photo in gallery | head(6) %}
+    {% galleryImage photo.path, photo.alt %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if videos.length %}
+<section class="container py-5">
+  <h2 class="bsn-section-title">Latest video <a class="bsn-more" href="/videos/">See all</a></h2>
+  <div class="ratio ratio-16x9 bsn-video">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ videos[0].youtube | youtubeId(videos[0].title) }}" title="{{ videos[0].title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</section>
+{%- endif %}
+
+<section class="container py-5 text-center">
+  <h2 class="bsn-section-title justify-content-center">Follow along</h2>
+  {% include "partials/social-links.njk" %}
+  <p class="text-body-secondary">Show announcements go out on social first.</p>
+</section>
+{%- if gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}
