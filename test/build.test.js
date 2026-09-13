@@ -86,3 +86,12 @@ test("videos page embeds one privacy-enhanced iframe per entry", () => {
   assert.match(html, /loading="lazy"/);
   assert.match(html, /title="Demo video — replace me"/);
 });
+
+test("venue page renders prose and structured facts", () => {
+  const html = read("venue/index.html");
+  assert.match(html, /5700 VT Route 100/);
+  assert.match(html, /href="tel:802-366-0318"/);
+  assert.match(html, /The New American Grill/);
+  assert.match(html, /<h2 class="h4">Hours<\/h2>/);
+  assert.match(html, /Open in maps/);
+});

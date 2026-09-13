@@ -1,0 +1,8 @@
+---
+layout: layouts/base.njk
+---
+<div class="container py-5">
+  <h1 class="display-4">{{ title }}</h1>
+  <div class="bsn-prose">{{ content | safe }}</div>
+  {% include "partials/venue-facts.njk" %}
+</div>
