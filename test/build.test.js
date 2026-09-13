@@ -78,3 +78,11 @@ test("gallery page renders one lightbox item per image with generated sizes", ()
   assert.match(html, /GLightbox\(/);
   assert.ok(fs.readdirSync(path.join(outDir, "img/gen")).some((f) => f.endsWith("-400.webp")));
 });
+
+test("videos page embeds one privacy-enhanced iframe per entry", () => {
+  const html = read("videos/index.html");
+  const iframes = html.match(/youtube-nocookie\.com\/embed\/[A-Za-z0-9_-]{11}/g) || [];
+  assert.equal(iframes.length, 1);
+  assert.match(html, /loading="lazy"/);
+  assert.match(html, /title="Demo video — replace me"/);
+});

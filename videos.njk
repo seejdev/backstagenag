@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Videos
+description: Live videos from Backstage @ NAG.
+permalink: /videos/
+---
+<div class="container py-5">
+  <h1 class="display-4">Videos</h1>
+  {%- if videos.length %}
+  <div class="row g-4">
+    {%- for video in videos %}
+    <div class="col-md-6">
+      <div class="ratio ratio-16x9 bsn-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/{{ video.youtube | youtubeId(video.title) }}" title="{{ video.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="mt-2 mb-0">{{ video.title }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="lead text-body-secondary">No videos yet.</p>
+  {%- endif %}
+</div>

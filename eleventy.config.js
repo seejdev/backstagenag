@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import Image from "@11ty/eleventy-img";
 import { partitionEvents, groupByMonth, groupByYear } from "./lib/events.js";
+import { youtubeId } from "./lib/videos.js";
 
 // BSN_BUILD_NOW pins "today" for deterministic builds (used by the smoke test).
 function buildNow() {
@@ -22,6 +23,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("head", (array, n) => (n < 0 ? array.slice(n) : array.slice(0, n)));
   eleventyConfig.addFilter("groupByMonth", groupByMonth);
   eleventyConfig.addFilter("groupByYear", groupByYear);
+  eleventyConfig.addFilter("youtubeId", youtubeId);
 
   eleventyConfig.addCollection("upcomingEvents", (api) =>
     partitionEvents(api.getFilteredByTag("events"), buildNow()).upcoming,
