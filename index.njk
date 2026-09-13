@@ -52,9 +52,11 @@ layout: layouts/base.njk
 </section>
 {%- endif %}
 
+{%- if site.social.length %}
 <section class="container py-5 text-center">
   <h2 class="bsn-section-title justify-content-center">Follow along</h2>
   {% include "partials/social-links.njk" %}
   <p class="text-body-secondary">Show announcements go out on social first.</p>
 </section>
+{%- endif %}
 {%- if gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}

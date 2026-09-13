@@ -5,13 +5,21 @@ import { youtubeId } from "./lib/videos.js";
 
 // BSN_BUILD_NOW pins "today" for deterministic builds (used by the smoke test).
 function buildNow() {
-  return process.env.BSN_BUILD_NOW ? new Date(process.env.BSN_BUILD_NOW) : new Date();
+  if (!process.env.BSN_BUILD_NOW) return new Date();
+  const now = new Date(process.env.BSN_BUILD_NOW);
+  if (Number.isNaN(now.getTime())) {
+    throw new Error(`BSN_BUILD_NOW is not a valid date: "${process.env.BSN_BUILD_NOW}"`);
+  }
+  return now;
 }
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("img/events");
   eleventyConfig.addPassthroughCopy("img/site");
+  // img/gallery/ is processed by eleventy-img rather than copied, so the dev server
+  // needs to be told to watch it.
+  eleventyConfig.addWatchTarget("img/gallery/");
 
   // All date formatting is UTC so the calendar date in front matter is what renders.
   const utc = (date) => DateTime.fromJSDate(date, { zone: "utc" });
@@ -54,6 +62,8 @@ export default function (eleventyConfig) {
     templateFormats: ["md", "njk", "html"],
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
+    // Do not add an "output" key here: a config-level dir.output overrides the output path passed to
+    // new Eleventy(input, output), which silently breaks the build smoke test. The default is already _site.
     dir: {
       input: ".",
       includes: "_includes",

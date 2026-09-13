@@ -48,6 +48,18 @@ test("an event missing date throws, naming the file", () => {
   assert.throws(() => partitionEvents([bad], new Date()), /2026-10-03-bad\.md.*date/);
 });
 
+test("a filename date that disagrees with the front-matter date throws, naming both", () => {
+  const date = new Date("2026-10-03T00:00:00Z");
+  const mismatched = { date, inputPath: "./events/2026-10-17-bad.md", data: { title: "Bad", date } };
+  assert.throws(() => partitionEvents([mismatched], new Date()), /2026-10-03.*2026-10-17|2026-10-17.*2026-10-03/);
+});
+
+test("a filename with no date prefix does not throw", () => {
+  const date = new Date("2026-10-03T00:00:00Z");
+  const item = { date, inputPath: "./events/bad.md", data: { title: "Bad", date } };
+  assert.doesNotThrow(() => partitionEvents([item], new Date("2026-01-01T00:00:00Z")));
+});
+
 test("groupByMonth labels correctly across a year boundary and keeps order", () => {
   const groups = groupByMonth([ev("A", "2026-12-12"), ev("B", "2026-12-19"), ev("C", "2027-01-09")]);
   assert.deepEqual(
