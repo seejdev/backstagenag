@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Photos
+description: Photos from shows at Backstage @ NAG.
+permalink: /gallery/
+---
+<div class="container py-5">
+  <h1 class="display-4">Photos</h1>
+  {%- if gallery.length %}
+  <div class="bsn-gallery">
+    {%- for photo in gallery %}
+    {% galleryImage photo.path, photo.alt %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="lead text-body-secondary">No photos yet — check back after the next show.</p>
+  {%- endif %}
+</div>
+{% include "partials/lightbox.njk" %}

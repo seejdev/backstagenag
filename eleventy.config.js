@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import Image from "@11ty/eleventy-img";
 import { partitionEvents, groupByMonth, groupByYear } from "./lib/events.js";
 
 // BSN_BUILD_NOW pins "today" for deterministic builds (used by the smoke test).
@@ -28,6 +29,24 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("pastEvents", (api) =>
     partitionEvents(api.getFilteredByTag("events"), buildNow()).past,
   );
+
+  // One gallery item: 400px thumbnail in the grid, 1200px JPEG behind the lightbox link.
+  eleventyConfig.addShortcode("galleryImage", async function (src, alt) {
+    const metadata = await Image(src, {
+      widths: [400, 1200],
+      formats: ["webp", "jpeg"],
+      outputDir: `${eleventyConfig.directories.output}img/gen/`,
+      urlPath: "/img/gen/",
+    });
+    const large = metadata.jpeg[metadata.jpeg.length - 1];
+    const picture = Image.generateHTML(metadata, {
+      alt,
+      sizes: "(max-width: 576px) 50vw, 300px",
+      loading: "lazy",
+      decoding: "async",
+    });
+    return `<a href="${large.url}" class="glightbox gallery-item" data-gallery="backstage">${picture}</a>`;
+  });
 
   return {
     templateFormats: ["md", "njk", "html"],

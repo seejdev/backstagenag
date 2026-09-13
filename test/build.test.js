@@ -67,3 +67,14 @@ test("event detail pages keep the date in the URL and render fields", () => {
   assert.match(html, /href="https:\/\/example\.com\/tickets"/);
   assert.match(html, /<title>The High Breaks · Backstage @ NAG<\/title>/);
 });
+
+test("gallery page renders one lightbox item per image with generated sizes", () => {
+  const html = read("gallery/index.html");
+  const items = html.match(/class="glightbox gallery-item"/g) || [];
+  assert.equal(items.length, 6);
+  assert.match(html, /\/img\/gen\/[A-Za-z0-9_-]+-400\.webp/);
+  assert.match(html, /href="\/img\/gen\/[A-Za-z0-9_-]+-1200\.jpeg"/);
+  assert.match(html, /alt="Placeholder Six"/);
+  assert.match(html, /GLightbox\(/);
+  assert.ok(fs.readdirSync(path.join(outDir, "img/gen")).some((f) => f.endsWith("-400.webp")));
+});
