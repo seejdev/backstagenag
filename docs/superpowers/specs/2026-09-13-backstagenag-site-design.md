@@ -64,7 +64,7 @@ Everything is a file in the repo. There is no database and no build-time network
 }
 ```
 
-Prose about the venue (history, what the room is like, how to find it inside the restaurant) lives in the body of `venue.md`, not in JSON. JSON holds facts that get rendered as structured blocks; Markdown holds paragraphs.
+Values shown as `…` are illustrative; the real values are supplied per §10. Prose about the venue (history, what the room is like, how to find it inside the restaurant) lives in the body of `venue.md`, not in JSON. JSON holds facts that get rendered as structured blocks; Markdown holds paragraphs.
 
 ### 3.3 Events — `events/YYYY-MM-DD-slug.md`
 
@@ -92,7 +92,9 @@ Optional description in Markdown.
 - "Today" is the calendar date of `now` in `America/New_York`.
 - An event is **upcoming** if its calendar date ≥ today. A show tonight stays upcoming until midnight Eastern.
 - Returns `{ upcoming, past }`: `upcoming` sorted ascending by date, `past` sorted descending.
-- `now` is injectable so tests can pin it; the Eleventy config passes `new Date()`.
+- `now` is injectable so tests can pin it. The Eleventy config passes `new Date(process.env.BSN_BUILD_NOW)` when that variable is set (see §8.2), otherwise `new Date()`.
+
+`lib/events.js` also exports `groupByMonth(events)` and `groupByYear(events)`, each returning `[{ label, items }]` in input order (`"October 2026"` / `"2026"`). These do the grouping for the listing pages so templates stay flat.
 
 Eleventy collections `upcomingEvents` and `pastEvents` are thin wrappers over this function.
 
@@ -102,7 +104,7 @@ The directory is the database. Drop a `.jpg`, `.jpeg`, `.png`, or `.webp` into `
 
 - Order: filename descending, so date-prefixed names (`2026-08-15-the-high-breaks-01.jpg`) put the newest show first.
 - Alt text is derived from the filename by `altFromFilename()` in `lib/gallery.js`: strip extension, strip a leading `YYYY-MM-DD-`, strip a trailing `-NN` sequence number, replace `-`/`_` with spaces, capitalize words. `2026-08-15-the-high-breaks-01.jpg` → `The High Breaks`. A filename with nothing left after stripping falls back to `Backstage @ NAG`.
-- `@11ty/eleventy-img` (as a Nunjucks async shortcode) generates a 400px thumbnail for the grid and a 1200px large version for the lightbox, in WebP with JPEG fallback, written to `_site/img/gen/`. The originals are not copied to the output.
+- `@11ty/eleventy-img` (as a Nunjucks async shortcode) generates a 400px thumbnail for the grid and a 1200px large version for the lightbox, in WebP with JPEG fallback, written to `img/gen/` under whatever output directory the build is using (`_site/` normally; a temp dir in the smoke test). The originals are not copied to the output.
 - Lightbox: [GLightbox](https://github.com/biati-digital/glightbox) from CDN, matching the theme's CDN convention. The grid is a list of `<a href="{large}" class="glightbox">` wrapping `<img>`; it degrades to plain links without JavaScript.
 
 ### 3.5 Videos — `_data/videos.json`
@@ -184,12 +186,11 @@ Added:
 - `readableDate(date)` → `Sat, Oct 4` (listings)
 - `longDate(date)` → `Saturday, October 4, 2026` (event detail)
 - `htmlDateString(date)` → `2026-10-04` (for `<time datetime>` and sitemap)
-- `monthKey(date)` → `2026-10`; `monthLabel(date)` → `October 2026`; `yearKey(date)` → `2026` (grouping)
-- `groupBy(array, filterName)` → array of `{ key, label, items }` in input order (used for month/year grouping without Nunjucks gymnastics)
+- `groupByMonth(events)`, `groupByYear(events)` — from `lib/events.js` (§3.3)
 - `head(array, n)` — kept from theme
 - `youtubeId(ref)` — from `lib/videos.js`
 - `galleryImage` async shortcode — wraps eleventy-img; emits the `<a class="glightbox">` + `<picture>` for one gallery item
-- Passthrough copy: `css/`, `img/` (except `img/gallery/`, which eleventy-img processes instead)
+- Passthrough copy: `css/`, `img/events/` (posters), `img/site/` (logo, OG image, favicon). `img/gallery/` is deliberately not passed through; eleventy-img processes it instead.
 
 All date filters format in UTC so the calendar date in the front matter is the date shown.
 
@@ -225,6 +226,7 @@ All date filters format in UTC so the calendar date in the front matter is the d
   - upcoming sorted ascending, past sorted descending
   - empty input → both arrays empty
   - item missing `title` or `date` throws, and the message includes the item's `inputPath`
+  - `groupByMonth()` / `groupByYear()` preserve input order and label correctly across a year boundary
 - `test/gallery.test.js` — `altFromFilename()` cases above; `listGalleryImages()` ignores non-image files and sorts descending
 - `test/videos.test.js` — `youtubeId()` accepts each supported URL shape and a bare ID; rejects a non-YouTube URL and a malformed ID, naming the entry
 
@@ -256,7 +258,7 @@ Because seed events have fixed dates, the smoke test injects a fixed `now` via t
 Shipped so every page renders on first build. All of it is labeled as example content in the README and is meant to be replaced.
 
 - 4 events: 2 dated in the future relative to 2026-09-13 (e.g. 2026-10-04, 2026-10-18), 2 in the past (e.g. 2026-08-15, 2026-07-26). Each exercises the optional fields differently (one has a poster, one has no link, etc.).
-- 6 gallery images: solid-color JPEGs generated once at scaffold time with the project name overlaid, named with the date-prefix convention and small enough to commit (~10 KB each).
+- 6 gallery images: solid-color JPEGs with the project name overlaid, generated once with `sharp` (already present as a dependency of eleventy-img), named with the date-prefix convention and small enough to commit (~10 KB each). The generator is a one-off and is not committed; the images are.
 - 1 video entry pointing at a public Eleventy or Bootstrap talk, so the embed demonstrably works.
 - `venue.json` and `site.json` populated with the real values the owner supplies; any field not yet supplied is left as an obviously-placeholder string (`"TODO: phone"`) and listed in the README under "fill these in."
 
