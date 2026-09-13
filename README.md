@@ -17,11 +17,11 @@ Placeholders still in the site. Each one renders visibly as `TODO:` or as exampl
 
 ## Add a show
 
-1. Copy `events/2026-10-03-the-high-breaks.md` to a new file named `events/YYYY-MM-DD-artist-name.md` (the date is the show date; the name becomes the URL).
+1. Copy `events/2026-09-12-mark-zaleski-quartet.md` to a new file named `events/YYYY-MM-DD-artist-name.md` (the date is the show date; the name becomes the URL).
 2. Edit the front matter between the `---` lines:
 
    ```yaml
-   title: The High Breaks          # required
+   title: Artist Name             # required
    date: 2026-10-03                # required, YYYY-MM-DD
    doors: "7:00 PM"                # optional
    showtime: "8:00 PM"             # optional
@@ -40,14 +40,14 @@ The show appears under Upcoming until midnight (Eastern) on its date, then moves
 
 Drop `.jpg`, `.jpeg`, `.png`, or `.webp` files into `img/gallery/`. That's it.
 
-Name them `YYYY-MM-DD-artist-name-01.jpg` so they sort newest-first and get a sensible alt text (`2026-08-15-the-high-breaks-01.jpg` → "The High Breaks"). Thumbnails and web-optimized versions are generated at build time; upload the full-size original.
+Name them `YYYY-MM-DD-artist-name-01.jpg` so they sort newest-first and get a sensible alt text (`2026-09-12-mark-zaleski-quartet-01.jpg` → "Mark Zaleski Quartet"). Thumbnails and web-optimized versions are generated at build time; upload the full-size original.
 
 ## Add a video
 
 Add a line to the **top** of `_data/videos.json` (top = newest):
 
 ```json
-{ "title": "The High Breaks — full set", "youtube": "https://www.youtube.com/watch?v=XXXXXXXXXXX" }
+{ "title": "Mark Zaleski Quartet — full set", "youtube": "https://www.youtube.com/watch?v=XXXXXXXXXXX" }
 ```
 
 Any YouTube URL works (`watch?v=`, `youtu.be/`, `shorts/`, `embed/`, `live/`), or just the 11-character video ID. Mind the commas between entries.

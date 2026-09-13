@@ -88,13 +88,13 @@ test("event listings split upcoming from past at BSN_BUILD_NOW", () => {
 });
 
 test("event detail pages keep the date in the URL and render fields", () => {
-  assert.ok(exists("events/2026-10-03-the-high-breaks/index.html"));
-  const html = read("events/2026-10-03-the-high-breaks/index.html");
-  assert.match(html, /Saturday, October 3, 2026/);
-  assert.match(html, /Doors<\/span> 7:00 PM/);
-  assert.match(html, /\/img\/events\/example-poster\.jpg/);
-  assert.match(html, /href="https:\/\/example\.com\/tickets"/);
-  assert.match(html, /<title>The High Breaks · Backstage @ NAG<\/title>/);
+  assert.ok(exists("events/2026-09-12-mark-zaleski-quartet/index.html"));
+  const html = read("events/2026-09-12-mark-zaleski-quartet/index.html");
+  assert.match(html, /Saturday, September 12, 2026/);
+  assert.match(html, /Show<\/span> 7:00 PM/);
+  assert.match(html, /\/img\/events\/2026-09-12-mark-zaleski-quartet\.jpg/);
+  assert.match(html, /Jazz/);
+  assert.match(html, /<title>Mark Zaleski Quartet · Backstage @ NAG<\/title>/);
 });
 
 test("gallery page renders one lightbox item per image with generated sizes", () => {
@@ -138,7 +138,7 @@ test("home page shows next show, coming up, photos, and video", () => {
 
 test("sitemap and robots are generated and exclude the 404", () => {
   const sitemap = read("sitemap.xml");
-  assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/events\/2026-10-03-the-high-breaks\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/events\/2026-09-12-mark-zaleski-quartet\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/venue\/<\/loc>/);
   assert.doesNotMatch(sitemap, /404/);
   const robots = read("robots.txt");
