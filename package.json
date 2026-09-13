@@ -1,0 +1,21 @@
+{
+  "name": "backstagenag",
+  "version": "1.0.0",
+  "description": "Backstage @ NAG — live music at the New American Grill, Londonderry VT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "test": "node --test 'test/*.test.js'"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^7.0.0",
+    "luxon": "^3.7.2"
+  }
+}
