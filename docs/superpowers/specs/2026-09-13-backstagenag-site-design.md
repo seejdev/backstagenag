@@ -38,7 +38,7 @@ Everything is a file in the repo. There is no database and no build-time network
   "description": "Live music venue at the New American Grill in Londonderry, Vermont. Shows, photos, videos, and how to find us.",
   "social": [
     { "name": "Facebook",  "url": "https://www.facebook.com/…",  "icon": "facebook" },
-    { "name": "Instagram", "url": "https://www.instagram.com/…", "icon": "instagram" },
+    { "name": "Instagram", "url": "https://www.instagram.com/backstagenag/", "icon": "instagram" },
     { "name": "YouTube",   "url": "https://www.youtube.com/…",   "icon": "youtube" }
   ]
 }
@@ -51,16 +51,16 @@ Everything is a file in the repo. There is no database and no build-time network
 
 ```json
 {
-  "address": { "street": "…", "city": "Londonderry", "state": "VT", "zip": "05148" },
-  "phone": "…",
+  "address": { "street": "5700 Vermont Rte 100", "city": "Londonderry", "state": "VT", "zip": "05148" },
+  "phone": "(802) 824-9844",
   "email": "…",
-  "hours": [ { "days": "Fri–Sat", "open": "5:00 PM", "close": "11:00 PM" } ],
+  "hours": [ { "days": "Sat–Sun", "open": "5:00 PM", "close": "9:00 PM" } ],
   "capacity": "…",
   "agePolicy": "…",
   "cover": "…",
   "parking": "…",
-  "mapUrl": "https://maps.google.com/?q=…",
-  "nag": { "name": "New American Grill", "url": "…" }
+  "mapUrl": "https://maps.app.goo.gl/SmiuSNe2Z5DdJmy89",
+  "nag": { "name": "New American Grill", "url": "https://www.thenewamericangrill.com/" }
 }
 ```
 
@@ -84,7 +84,7 @@ genre: Rock                     # optional
 Optional description in Markdown.
 ```
 
-`events/events.json` (Eleventy directory data file) applies to every event: `layout: event`, `tags: ["events"]`, `permalink: "/events/{{ page.fileSlug }}/"`.
+`events/events.11tydata.js` (Eleventy directory data file) applies to every event: `layout: layouts/event.njk`, `tags: ["events"]`, and a computed `permalink` of `/events/<filename without .md>/`. It is a JS file rather than JSON because Eleventy strips `YYYY-MM-DD-` prefixes from both `fileSlug` and `filePathStem`; the permalink must be derived from `page.inputPath` to keep the date in the URL.
 
 **Upcoming vs. past.** `lib/events.js` exports `partitionEvents(items, now)`:
 
@@ -105,7 +105,7 @@ The directory is the database. Drop a `.jpg`, `.jpeg`, `.png`, or `.webp` into `
 - Order: filename descending, so date-prefixed names (`2026-08-15-the-high-breaks-01.jpg`) put the newest show first.
 - Alt text is derived from the filename by `altFromFilename()` in `lib/gallery.js`: strip extension, strip a leading `YYYY-MM-DD-`, strip a trailing `-NN` sequence number, replace `-`/`_` with spaces, capitalize words. `2026-08-15-the-high-breaks-01.jpg` → `The High Breaks`. A filename with nothing left after stripping falls back to `Backstage @ NAG`.
 - `@11ty/eleventy-img` (as a Nunjucks async shortcode) generates a 400px thumbnail for the grid and a 1200px large version for the lightbox, in WebP with JPEG fallback, written to `img/gen/` under whatever output directory the build is using (`_site/` normally; a temp dir in the smoke test). The originals are not copied to the output.
-- Lightbox: [GLightbox](https://github.com/biati-digital/glightbox) from CDN, matching the theme's CDN convention. The grid is a list of `<a href="{large}" class="glightbox">` wrapping `<img>`; it degrades to plain links without JavaScript.
+- Lightbox: [GLightbox](https://github.com/biati-digital/glightbox) from CDN, matching the theme's CDN convention. The grid is a list of `<a href="{large}" class="glightbox">` wrapping `<picture>`; it degrades to plain links without JavaScript.
 
 ### 3.5 Videos — `_data/videos.json`
 
@@ -129,7 +129,7 @@ The directory is the database. Drop a `.jpg`, `.jpeg`, `.png`, or `.webp` into `
 | `/events/<slug>/` | `events/*.md` via `layouts/event.njk` | Poster (if any), full date, doors/showtime/price, genre, description, link button, back link |
 | `/gallery/` | `gallery.njk` | Thumbnail grid + lightbox |
 | `/videos/` | `videos.njk` | Video embed grid |
-| `/venue/` | `venue.md` via `layouts/page.njk` | Prose from the file body, then structured blocks from `venue.json`: address with map link, hours, capacity, age policy, cover, parking, link to New American Grill, phone/email |
+| `/venue/` | `venue.md` via `layouts/venue.njk` (chains onto `layouts/page.njk`) | Prose from the file body, then structured blocks from `venue.json`: address with map link, hours, capacity, age policy, cover, parking, link to New American Grill, phone/email |
 | `/404.html` | `404.md` | Kept from theme, re-copied |
 | `/sitemap.xml` | `sitemap.xml.njk` | Kept from theme, adapted |
 | `/robots.txt` | `robots.txt.njk` | New; allows all, points at sitemap |
@@ -146,6 +146,9 @@ Added:
 
 - `layouts/page.njk` — extends base; container, `<h1>{{ title }}</h1>`, content. Used by `venue.md` and `404.md`.
 - `layouts/event.njk` — extends base; event detail as described in §4.
+- `layouts/venue.njk` — chains onto `page.njk`; renders the Markdown prose, then includes `partials/venue-facts.njk`.
+- `partials/venue-facts.njk` — the structured blocks from `venue.json` (address, hours, capacity, contact).
+- `partials/lightbox.njk` — the GLightbox CSS/JS loader; included on `/gallery/` and on `/` (which also renders gallery thumbnails).
 - `partials/event-card.njk` — one event as a poster-style card (date block, title, meta line, link). Used by home and both event listings.
 - `partials/social-links.njk` — icon links from `site.social`. Used by home, footer, and venue page.
 
@@ -186,6 +189,7 @@ Added:
 - `readableDate(date)` → `Sat, Oct 4` (listings)
 - `longDate(date)` → `Saturday, October 4, 2026` (event detail)
 - `htmlDateString(date)` → `2026-10-04` (for `<time datetime>` and sitemap)
+- `dayNumber(date)` → `4`; `monthAbbr(date)` → `Oct` (the event card's date block)
 - `groupByMonth(events)`, `groupByYear(events)` — from `lib/events.js` (§3.3)
 - `head(array, n)` — kept from theme
 - `youtubeId(ref)` — from `lib/videos.js`
