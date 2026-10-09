@@ -22,17 +22,39 @@ layout: layouts/base.njk
   </div>
 </section>
 
-{%- set comingUp = collections.upcomingEvents | head(4) %}
-{%- if comingUp.length %}
-<section class="container py-5">
-  <h2 class="bsn-section-title">Coming up <a class="bsn-more" href="/events/">All shows</a></h2>
-  <div class="bsn-card-grid">
-    {%- for event in comingUp %}
-    {% include "partials/event-card.njk" %}
-    {%- endfor %}
+<section class="container py-5 bsn-home-split">
+  <div class="row g-4 align-items-start">
+    <div class="col-lg-5">
+      <h2 class="bsn-section-title">Coming up</h2>
+      <article class="bsn-card">
+        <div class="bsn-card-link">
+          <div class="bsn-date" aria-hidden="true">
+            <span class="bsn-date-day">Thu</span>
+            <span class="bsn-date-month">7pm</span>
+          </div>
+          <div class="bsn-card-body">
+            <h3 class="bsn-card-title">Open Mic Night</h3>
+            <p class="bsn-card-meta">Every Thursday · 7:00 PM</p>
+            <p class="bsn-card-genre">Open mic</p>
+          </div>
+        </div>
+      </article>
+      <p class="text-body-secondary mt-3 mb-0">Sign-ups at the door. 7–9 PM.</p>
+    </div>
+    <div class="col-lg-7">
+      <h2 class="bsn-section-title">Upcoming shows <a class="bsn-more" href="/events/">All shows</a></h2>
+      {%- if collections.upcomingEvents.length %}
+      <div class="bsn-card-grid bsn-card-grid-stack">
+        {%- for event in collections.upcomingEvents %}
+        {% include "partials/event-card.njk" %}
+        {%- endfor %}
+      </div>
+      {%- else %}
+      <p class="text-body-secondary">No booked shows yet.</p>
+      {%- endif %}
+    </div>
   </div>
 </section>
-{%- endif %}
 
 {%- if gallery.length %}
 <section class="container py-5">

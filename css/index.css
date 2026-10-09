@@ -38,12 +38,14 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
     var(--bs-body-bg);
   border-bottom: 1px solid var(--bsn-line);
 }
+.bsn-hero .container { text-align: center; }
 .bsn-hero-title { margin: 0; line-height: 0; }
-.bsn-hero-logo { display: block; width: min(34rem, 100%); height: auto; }
+.bsn-hero-logo { display: block; width: min(34rem, 100%); height: auto; margin-inline: auto; }
 .bsn-kicker { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; color: var(--bsn-accent); margin-bottom: 0.5rem; }
 
 /* Sections */
-.bsn-section-title { font-size: 2.25rem; display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; }
+.bsn-section-title { font-size: 2.25rem; display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; justify-content: center; }
+.bsn-home-split .bsn-section-title { justify-content: flex-start; }
 .bsn-more { font-family: system-ui, sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; }
 
 /* Buttons */
@@ -61,6 +63,7 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 
 /* Event cards */
 .bsn-card-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.bsn-card-grid-stack { grid-template-columns: 1fr; }
 .bsn-card { background: var(--bsn-surface); border: 1px solid var(--bsn-line); border-radius: 0.5rem; overflow: hidden; }
 .bsn-card-link { display: flex; gap: 1rem; padding: 1rem; color: inherit; text-decoration: none; transition: background-color 0.15s ease; }
 .bsn-card-link:hover { background: rgba(255, 255, 255, 0.04); color: inherit; }
@@ -87,10 +90,10 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-video { border-radius: 0.5rem; overflow: hidden; background: var(--bsn-surface); }
 
 /* Prose, social, footer */
-.bsn-prose { max-width: 70ch; }
+.bsn-prose { max-width: 70ch; margin-inline: auto; }
 .bsn-prose img { max-width: 100%; }
 .bsn-social a { font-size: 1.75rem; margin: 0 0.35rem; }
-.bsn-footer { background: var(--bsn-surface); border-top: 1px solid var(--bsn-line); }
+.bsn-footer { background: var(--bsn-surface); border-top: 1px solid var(--bsn-line); text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
   .bsn-card-link { transition: none; }
