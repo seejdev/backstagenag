@@ -10,8 +10,11 @@ layout: layouts/base.njk
     </h1>
     <p class="lead">{{ site.tagline }}</p>
     {%- if nextShow.length %}
-    <p class="bsn-kicker mt-4">Next show</p>
-    <p class="fs-3 mb-0"><a class="link-light" href="{{ nextShow[0].url }}">{{ nextShow[0].data.title }}</a> <span class="text-body-secondary">— {{ nextShow[0].date | readableDate }}</span></p>
+    <a class="bsn-next" href="{{ nextShow[0].url }}">
+      <span class="bsn-kicker">Next show</span>
+      <span class="bsn-next-title">{{ nextShow[0].data.title }}</span>
+      <span class="bsn-next-date">{{ nextShow[0].date | readableDate }}</span>
+    </a>
     {%- else %}
     <p class="text-body-secondary mt-4">No shows scheduled right now — check back soon.</p>
     {%- endif %}
@@ -30,7 +33,7 @@ layout: layouts/base.njk
     <div class="col-lg-5">
       <h2 class="bsn-section-title">Coming up</h2>
       <article class="bsn-card bsn-open-mic">
-        <div class="bsn-card-link">
+        <a class="bsn-card-link" href="/events/open-mic/">
           <div class="bsn-date" aria-hidden="true">
             <span class="bsn-date-day">Thu</span>
             <span class="bsn-date-month">7pm</span>
@@ -40,7 +43,7 @@ layout: layouts/base.njk
             <p class="bsn-card-meta">Every Thursday at 7:00 PM</p>
             <p class="bsn-card-genre">Open mic</p>
           </div>
-        </div>
+        </a>
       </article>
       <p class="text-body-secondary mt-3 mb-0">Sign-ups at the door. Every Thursday, 7:00 PM.</p>
     </div>

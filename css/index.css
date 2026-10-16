@@ -134,3 +134,20 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 }
 
 .bsn-venue-photo { display: block; width: 100%; height: 22rem; object-fit: cover; object-position: center 42%; border-radius: 0.5rem; margin: 0 auto 1.75rem; }
+
+.bsn-next {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-top: 1.75rem;
+  padding: 0.9rem 1.5rem 1rem;
+  border: 1px solid var(--bsn-accent);
+  border-radius: 0.6rem;
+  background: rgba(245, 166, 35, 0.12);
+  color: #fff;
+  text-decoration: none;
+}
+.bsn-next:hover { background: rgba(245, 166, 35, 0.22); color: #fff; }
+.bsn-next-title { font-family: var(--bsn-display); font-size: 2rem; letter-spacing: 0.03em; line-height: 1.1; }
+.bsn-next-date { color: var(--bsn-accent); }

@@ -7,7 +7,7 @@ permalink: /events/
 <div class="container py-5">
   <h1 class="display-4">Upcoming shows</h1>
   <article class="bsn-card bsn-open-mic bsn-open-mic-feature mt-4">
-    <div class="bsn-card-link">
+    <a class="bsn-card-link" href="/events/open-mic/">
       <div class="bsn-date" aria-hidden="true">
         <span class="bsn-date-day">Thu</span>
         <span class="bsn-date-month">7pm</span>
@@ -17,7 +17,7 @@ permalink: /events/
         <p class="bsn-card-meta fs-5">Every Thursday at 7:00 PM</p>
         <p class="mb-0">Sign-ups at the door. Every Thursday, 7:00 PM.</p>
       </div>
-    </div>
+    </a>
   </article>
   {%- set groups = collections.upcomingEvents | groupByMonth %}
   {%- if groups.length %}
