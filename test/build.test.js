@@ -119,8 +119,9 @@ test("videos page embeds one privacy-enhanced iframe per entry", () => {
 test("venue page renders prose and structured facts", () => {
   const html = read("venue/index.html");
   assert.match(html, /5700 VT Route 100/);
-  assert.match(html, /href="tel:802-366-0318"/);
-  assert.match(html, /The New American Grill/);
+  assert.match(html, /mailto:BackstageNAG@gmail.com/);
+  assert.match(html, /Electric Mayhem/);
+  assert.match(html, /45 seated, 100 standing/);
   assert.match(html, /<h2 class="h4">Hours<\/h2>/);
   assert.match(html, /Open in maps/);
 });
@@ -138,10 +139,10 @@ test("home page shows next show, coming up, photos, and video", () => {
 
 test("sitemap and robots are generated and exclude the 404", () => {
   const sitemap = read("sitemap.xml");
-  assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/events\/2026-09-12-mark-zaleski-quartet\/<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/backstagenag\.netlify\.app\/venue\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/backstagenag\.com\/events\/2026-09-12-mark-zaleski-quartet\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/backstagenag\.com\/venue\/<\/loc>/);
   assert.doesNotMatch(sitemap, /404/);
   const robots = read("robots.txt");
-  assert.match(robots, /Sitemap: https:\/\/backstagenag\.netlify\.app\/sitemap\.xml/);
+  assert.match(robots, /Sitemap: https:\/\/backstagenag\.com\/sitemap\.xml/);
   assert.ok(exists("img/site/og.jpg"));
 });
