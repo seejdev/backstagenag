@@ -104,6 +104,33 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-hero-social .bsn-social a { font-size: 1.6rem; color: #fff; }
 .bsn-open-mic { border-color: var(--bsn-accent); box-shadow: 0 0 0 1px var(--bsn-accent); }
 .bsn-open-mic-feature { max-width: 42rem; }
-.bsn-venue .bsn-prose { margin-inline: auto; }
-.bsn-fact { background: var(--bsn-surface); border: 1px solid var(--bsn-line); border-radius: 0.5rem; padding: 1.25rem; height: 100%; text-align: left; }
 .bsn-event .bsn-prose { margin-inline: 0; text-align: left; }
+
+.bsn-venue { max-width: 920px; }
+.bsn-venue-head { text-align: left; margin-bottom: 2.5rem; }
+.bsn-venue-head h1 { text-align: center; margin-bottom: 1.25rem; }
+.bsn-venue-head .bsn-prose { margin: 0 auto; max-width: 62ch; text-align: left; }
+.bsn-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.bsn-fact {
+  background: var(--bsn-surface);
+  border: 1px solid var(--bsn-line);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.35rem;
+  text-align: left;
+}
+.bsn-fact h2 { font-size: 1.15rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--bsn-accent); }
+.bsn-fact p, .bsn-fact address { margin: 0 0 0.6rem; }
+.bsn-fact dl { margin: 0; }
+.bsn-fact dl div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.5rem; margin-bottom: 0.45rem; }
+.bsn-fact dt { font-weight: 600; }
+.bsn-fact dd { margin: 0; }
+@media (max-width: 700px) {
+  .bsn-facts { grid-template-columns: 1fr; }
+  .bsn-fact dl div { grid-template-columns: 5.5rem 1fr; }
+}
+
+.bsn-venue-photo { display: block; width: 100%; height: 22rem; object-fit: cover; object-position: center 42%; border-radius: 0.5rem; margin: 0 auto 1.75rem; }

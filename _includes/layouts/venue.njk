@@ -2,7 +2,10 @@
 layout: layouts/base.njk
 ---
 <div class="container py-5 bsn-venue">
-  <h1 class="display-4 text-center">{{ title }}</h1>
-  <div class="bsn-prose text-center">{{ content | safe }}</div>
+  <header class="bsn-venue-head">
+    <h1 class="display-4">{{ title }}</h1>
+    <img class="bsn-venue-photo" src="/img/site/venue-room.jpg" alt="The room at Backstage @ NAG">
+    <div class="bsn-prose">{{ content | safe }}</div>
+  </header>
   {% include "partials/venue-facts.njk" %}
 </div>

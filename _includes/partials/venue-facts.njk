@@ -1,39 +1,29 @@
 {%- set a = venue.address %}
-<div class="row g-4 mt-4 bsn-facts justify-content-center">
-  <div class="col-md-6">
-    <div class="bsn-fact">
-      <h2 class="h4">Where</h2>
-      <address class="mb-2">
-        {{ a.street }}<br>
-        {{ a.city }}, {{ a.state }} {{ a.zip }}
-      </address>
-      {%- if venue.mapUrl %}<a href="{{ venue.mapUrl }}" rel="noopener">Open in maps</a>{%- endif %}
-      {%- if venue.parking %}<p class="mt-3"><strong>Parking:</strong> {{ venue.parking }}</p>{%- endif %}
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="bsn-fact">
-      <h2 class="h4">Hours</h2>
-      <p class="mb-0">{{ venue.hoursNote }}</p>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="bsn-fact">
-      <h2 class="h4">Good to know</h2>
-      <ul class="list-unstyled mb-0">
-        <li><strong>Capacity:</strong> {{ venue.capacity }}</li>
-        <li><strong>Ages:</strong> {{ venue.agePolicy }}</li>
-        <li><strong>Cover:</strong> {{ venue.cover }}</li>
-      </ul>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="bsn-fact">
-      <h2 class="h4">Contact</h2>
-      <ul class="list-unstyled mb-0">
-        <li><a href="mailto:{{ venue.email }}">{{ venue.email }}</a></li>
-        <li>In person at {% if venue.inPerson.url %}<a href="{{ venue.inPerson.url }}" rel="noopener">{{ venue.inPerson.name }}</a>{% else %}{{ venue.inPerson.name }}{% endif %}</li>
-      </ul>
-    </div>
-  </div>
+<div class="bsn-facts">
+  <section class="bsn-fact">
+    <h2>Where</h2>
+    <address>
+      {{ a.street }}<br>
+      {{ a.city }}, {{ a.state }} {{ a.zip }}
+    </address>
+    {%- if venue.mapUrl %}<a href="{{ venue.mapUrl }}" rel="noopener">Open in maps</a>{%- endif %}
+    {%- if venue.parking %}<p><strong>Parking</strong> {{ venue.parking }}</p>{%- endif %}
+  </section>
+  <section class="bsn-fact">
+    <h2>Hours</h2>
+    <p>{{ venue.hoursNote }}</p>
+  </section>
+  <section class="bsn-fact">
+    <h2>Good to know</h2>
+    <dl>
+      <div><dt>Capacity</dt><dd>{{ venue.capacity }}</dd></div>
+      <div><dt>Ages</dt><dd>{{ venue.agePolicy }}</dd></div>
+      <div><dt>Cover</dt><dd>{{ venue.cover }}</dd></div>
+    </dl>
+  </section>
+  <section class="bsn-fact">
+    <h2>Contact</h2>
+    <p><a href="mailto:{{ venue.email }}">{{ venue.email }}</a></p>
+    <p>In person at {% if venue.inPerson.url %}<a href="{{ venue.inPerson.url }}" rel="noopener">{{ venue.inPerson.name }}</a>{% else %}{{ venue.inPerson.name }}{% endif %}</p>
+  </section>
 </div>
