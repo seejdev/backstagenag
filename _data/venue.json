@@ -1,14 +1,11 @@
 {
   "address": { "street": "5700 VT Route 100", "city": "Londonderry", "state": "VT", "zip": "05148" },
-  "phone": "802-366-0318",
-  "email": "TODO: email",
-  "hours": [
-    { "days": "TODO: days", "open": "TODO: open", "close": "TODO: close" }
-  ],
-  "capacity": "TODO: capacity",
-  "agePolicy": "TODO: age policy",
-  "cover": "TODO: cover charge norms",
-  "parking": "TODO: parking",
+  "email": "BackstageNAG@gmail.com",
+  "hoursNote": "On show dates, doors open 1 hour ahead of show time. Show times are listed on the event page.",
+  "capacity": "45 seated, 100 standing",
+  "agePolicy": "Show specific. Most shows, including open mics, are family friendly.",
+  "cover": "Show specific",
+  "parking": "Ample",
   "mapUrl": "https://www.google.com/maps/search/?api=1&query=5700+VT+Route+100+Londonderry+VT+05148",
-  "nag": { "name": "The New American Grill", "url": "https://www.facebook.com/theNewAmericanGrill/" }
+  "inPerson": { "name": "Electric Mayhem", "url": "https://www.facebook.com/profile.php?id=61593398390249" }
 }

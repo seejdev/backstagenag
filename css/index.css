@@ -99,3 +99,11 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 @media (prefers-reduced-motion: reduce) {
   .bsn-card-link { transition: none; }
 }
+
+.bsn-hero-social .bsn-social { margin-bottom: 0; }
+.bsn-hero-social .bsn-social a { font-size: 1.6rem; color: #fff; }
+.bsn-open-mic { border-color: var(--bsn-accent); box-shadow: 0 0 0 1px var(--bsn-accent); }
+.bsn-open-mic-feature { max-width: 42rem; }
+.bsn-venue .bsn-prose { margin-inline: auto; }
+.bsn-fact { background: var(--bsn-surface); border: 1px solid var(--bsn-line); border-radius: 0.5rem; padding: 1.25rem; height: 100%; text-align: left; }
+.bsn-event .bsn-prose { margin-inline: 0; text-align: left; }

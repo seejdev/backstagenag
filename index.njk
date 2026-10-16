@@ -19,6 +19,9 @@ layout: layouts/base.njk
       <a class="btn btn-accent btn-lg me-2" href="/events/">See all shows</a>
       <a class="btn btn-outline-light btn-lg" href="/venue/">Find the room</a>
     </div>
+    <div class="bsn-hero-social mt-4">
+      {% include "partials/social-links.njk" %}
+    </div>
   </div>
 </section>
 
@@ -26,7 +29,7 @@ layout: layouts/base.njk
   <div class="row g-4 align-items-start">
     <div class="col-lg-5">
       <h2 class="bsn-section-title">Coming up</h2>
-      <article class="bsn-card">
+      <article class="bsn-card bsn-open-mic">
         <div class="bsn-card-link">
           <div class="bsn-date" aria-hidden="true">
             <span class="bsn-date-day">Thu</span>
@@ -34,12 +37,12 @@ layout: layouts/base.njk
           </div>
           <div class="bsn-card-body">
             <h3 class="bsn-card-title">Open Mic Night</h3>
-            <p class="bsn-card-meta">Every Thursday · 7:00 PM</p>
+            <p class="bsn-card-meta">Every Thursday at 7:00 PM</p>
             <p class="bsn-card-genre">Open mic</p>
           </div>
         </div>
       </article>
-      <p class="text-body-secondary mt-3 mb-0">Sign-ups at the door. 7–9 PM.</p>
+      <p class="text-body-secondary mt-3 mb-0">Sign-ups at the door. Every Thursday, 7:00 PM.</p>
     </div>
     <div class="col-lg-7">
       <h2 class="bsn-section-title">Upcoming shows <a class="bsn-more" href="/events/">All shows</a></h2>
@@ -76,11 +79,4 @@ layout: layouts/base.njk
 </section>
 {%- endif %}
 
-{%- if site.social.length %}
-<section class="container py-5 text-center">
-  <h2 class="bsn-section-title justify-content-center">Follow along</h2>
-  {% include "partials/social-links.njk" %}
-  <p class="text-body-secondary">Show announcements go out on social first.</p>
-</section>
-{%- endif %}
 {%- if gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}

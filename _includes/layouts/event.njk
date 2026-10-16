@@ -1,11 +1,11 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="container py-5">
+<article class="container py-5 bsn-event">
   <a class="text-body-secondary small" href="/events/">&larr; All shows</a>
-  <div class="row g-5 mt-1">
+  <div class="row g-5 mt-1 align-items-start">
     {%- if image %}
-    <div class="col-md-5"><img class="img-fluid rounded bsn-poster" src="{{ image }}" alt="Poster for {{ title }}"></div>
+    <div class="col-md-5"><img class="img-fluid rounded bsn-poster" src="{{ image }}" alt="{{ title }}"></div>
     {%- endif %}
     <div class="col">
       <h1 class="display-3 mb-1">{{ title }}</h1>
@@ -16,8 +16,8 @@ layout: layouts/base.njk
         {%- if showtime %}<li><span class="text-body-secondary">Show</span> {{ showtime }}</li>{%- endif %}
         {%- if price %}<li><span class="text-body-secondary">Cover</span> {{ price }}</li>{%- endif %}
       </ul>
-      {%- if link %}<a class="btn btn-accent btn-lg mb-4" href="{{ link }}" rel="noopener">Tickets &amp; info</a>{%- endif %}
-      <div class="bsn-prose">{{ content | safe }}</div>
+      {%- if link %}<a class="btn btn-accent btn-lg mb-4" href="{{ link }}" rel="noopener">Facebook event</a>{%- endif %}
+      <div class="bsn-prose text-start">{{ content | safe }}</div>
     </div>
   </div>
 </article>
