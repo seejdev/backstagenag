@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 title: Videos
 description: Live videos from Backstage @ NAG.
-permalink: /videos/
+permalink: false
 ---
 <div class="container py-5">
   <h1 class="display-4">Videos</h1>

@@ -100,20 +100,16 @@ test("event detail pages keep the date in the URL and render fields", () => {
 test("gallery page renders one lightbox item per image with generated sizes", () => {
   const html = read("gallery/index.html");
   const items = html.match(/class="glightbox gallery-item"/g) || [];
-  assert.equal(items.length, 6);
+  assert.equal(items.length, 20);
+  assert.match(html, /Mark Zaleski Band/);
   assert.match(html, /\/img\/gen\/[A-Za-z0-9_-]+-400\.webp/);
   assert.match(html, /href="\/img\/gen\/[A-Za-z0-9_-]+-1200\.jpeg"/);
-  assert.match(html, /alt="Placeholder Six"/);
   assert.match(html, /GLightbox\(/);
   assert.ok(fs.readdirSync(path.join(outDir, "img/gen")).some((f) => f.endsWith("-400.webp")));
 });
 
-test("videos page embeds one privacy-enhanced iframe per entry", () => {
-  const html = read("videos/index.html");
-  const iframes = html.match(/youtube-nocookie\.com\/embed\/[A-Za-z0-9_-]{11}/g) || [];
-  assert.equal(iframes.length, 1);
-  assert.match(html, /loading="lazy"/);
-  assert.match(html, /title="The Future of 11ty — Zach Leatherman \(11ty Conf 2024\)"/);
+test("videos page is not published until there are videos", () => {
+  assert.equal(exists("videos/index.html"), false);
 });
 
 test("venue page renders prose and structured facts", () => {
@@ -122,18 +118,18 @@ test("venue page renders prose and structured facts", () => {
   assert.match(html, /mailto:BackstageNAG@gmail.com/);
   assert.match(html, /Electric Mayhem/);
   assert.match(html, /45 seated, 100 standing/);
-  assert.match(html, /<h2 class="h4">Hours<\/h2>/);
+  assert.match(html, /<h2>Hours<\/h2>/);
   assert.match(html, /Open in maps/);
 });
 
-test("home page shows next show, coming up, photos, and video", () => {
+test("home page shows next show, coming up, and photos", () => {
   const html = read("index.html");
   assert.match(html, /Next show/);
   const nextUp = seededEvents().find((e) => e.day >= TODAY);
   assert.match(html, new RegExp(`href="/events/${nextUp.slug}/"`), "next show should link to the soonest upcoming event");
   assert.match(html, /Coming up/);
-  assert.equal((html.match(/class="glightbox gallery-item"/g) || []).length, 6);
-  assert.match(html, /youtube-nocookie\.com\/embed\//);
+  assert.equal((html.match(/class="glightbox gallery-item"/g) || []).length, 6); // homepage shows the first six
+  assert.doesNotMatch(html, /youtube-nocookie\.com\/embed\//);
   assert.match(html, /<title>Backstage @ NAG<\/title>/);
 });
 
