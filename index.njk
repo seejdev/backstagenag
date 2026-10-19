@@ -91,4 +91,6 @@ layout: layouts/base.njk
 </section>
 {%- endif %}
 
+{% include "partials/venue-section.njk" %}
+
 {%- if not albums.length and gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}
