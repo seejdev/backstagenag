@@ -101,7 +101,7 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 }
 
 .bsn-hero-social .bsn-social { margin-bottom: 0; }
-.bsn-hero-social .bsn-social a { font-size: 1.6rem; color: #fff; }
+.bsn-hero-social .bsn-social a { font-size: 2.15rem; color: #fff; }
 .bsn-open-mic { border-color: var(--bsn-accent); box-shadow: 0 0 0 1px var(--bsn-accent); }
 .bsn-open-mic-feature { max-width: 42rem; }
 .bsn-event .bsn-prose { margin-inline: 0; text-align: left; }
@@ -158,3 +158,9 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
   .bsn-open-photos { grid-template-columns: 1fr; }
   .bsn-open-photos img { height: 18rem; }
 }
+
+.bsn-albums { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.bsn-album { display: block; color: inherit; text-decoration: none; }
+.bsn-album img { width: 100%; height: 16rem; object-fit: cover; border-radius: 0.5rem; }
+.bsn-album span { display: block; margin-top: 0.6rem; font-family: var(--bsn-display); font-size: 1.35rem; letter-spacing: 0.03em; }
+.bsn-album:hover span { color: var(--bsn-accent); }

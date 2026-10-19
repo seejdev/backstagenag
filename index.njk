@@ -62,7 +62,16 @@ layout: layouts/base.njk
   </div>
 </section>
 
-{%- if gallery.length %}
+{%- if albums.length %}
+<section class="container py-5">
+  <h2 class="bsn-section-title">Photos <a class="bsn-more" href="/gallery/">See all</a></h2>
+  <div class="bsn-gallery">
+    {%- for photo in albums[0].photos | head(6) %}
+    {% galleryImage photo.path, photo.alt %}
+    {%- endfor %}
+  </div>
+</section>
+{%- elif gallery.length %}
 <section class="container py-5">
   <h2 class="bsn-section-title">Photos <a class="bsn-more" href="/gallery/">See all</a></h2>
   <div class="bsn-gallery">
@@ -82,4 +91,4 @@ layout: layouts/base.njk
 </section>
 {%- endif %}
 
-{%- if gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}
+{%- if not albums.length and gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}

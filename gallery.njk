@@ -6,14 +6,13 @@ permalink: /gallery/
 ---
 <div class="container py-5">
   <h1 class="display-4">Photos</h1>
-  {%- if gallery.length %}
+  {%- for album in albums %}
+  <h2 class="display-5 mt-5 mb-3">{{ album.title }}</h2>
   <div class="bsn-gallery">
-    {%- for photo in gallery %}
+    {%- for photo in album.photos %}
     {% galleryImage photo.path, photo.alt %}
     {%- endfor %}
   </div>
-  {%- else %}
-  <p class="lead text-body-secondary">No photos yet — check back after the next show.</p>
-  {%- endif %}
+  {%- endfor %}
 </div>
 {% include "partials/lightbox.njk" %}
