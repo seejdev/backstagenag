@@ -167,7 +167,9 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 
 
 .bsn-signup-band { background: var(--bsn-surface); border-top: 1px solid var(--bsn-line); border-bottom: 1px solid var(--bsn-line); }
+.bsn-hero .bsn-signup { max-width: 26rem; margin: 1.25rem auto 0; padding: 0; text-align: center; }
 .bsn-signup { max-width: 34rem; margin: 0 auto; padding: 1.1rem 0; text-align: center; }
+.bsn-hero .bsn-signup-title { font-size: 1.1rem; letter-spacing: 0.08em; }
 .bsn-signup-title { font-family: var(--bsn-display); font-size: 1.35rem; letter-spacing: 0.06em; margin-bottom: 0.1rem; }
 .bsn-signup-note { color: var(--bs-secondary-color); margin-bottom: 0.6rem; font-size: 0.95rem; }
 .bsn-signup-row { display: flex; gap: 0.5rem; justify-content: center; }
