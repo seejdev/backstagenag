@@ -164,3 +164,13 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-album img { width: 100%; height: 16rem; object-fit: cover; border-radius: 0.5rem; }
 .bsn-album span { display: block; margin-top: 0.6rem; font-family: var(--bsn-display); font-size: 1.35rem; letter-spacing: 0.03em; }
 .bsn-album:hover span { color: var(--bsn-accent); }
+
+
+.bsn-signup-band { background: var(--bsn-surface); border-top: 1px solid var(--bsn-line); border-bottom: 1px solid var(--bsn-line); }
+.bsn-signup { max-width: 34rem; margin: 0 auto; padding: 1.1rem 0; text-align: center; }
+.bsn-signup-title { font-family: var(--bsn-display); font-size: 1.35rem; letter-spacing: 0.06em; margin-bottom: 0.1rem; }
+.bsn-signup-note { color: var(--bs-secondary-color); margin-bottom: 0.6rem; font-size: 0.95rem; }
+.bsn-signup-row { display: flex; gap: 0.5rem; justify-content: center; }
+.bsn-signup input[type="email"] { flex: 1; min-width: 0; background: #111; color: inherit; border: 1px solid var(--bsn-line); border-radius: 0.4rem; padding: 0.5rem 0.8rem; }
+.bsn-signup input[type="email"]:focus { outline: 2px solid var(--bsn-accent); border-color: transparent; }
+.bsn-signup-hide { display: none; }
