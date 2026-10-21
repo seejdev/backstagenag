@@ -22,6 +22,7 @@ layout: layouts/base.njk
       <a class="btn btn-accent btn-lg me-2" href="/events/">See all shows</a>
       <a class="btn btn-outline-light btn-lg" href="/venue/">Find the room</a>
     </div>
+    <p class="bsn-walkin mt-3 mb-0">Walk in. No ticket unless the show says so. Dinner optional.</p>
     <div class="bsn-hero-social mt-4">
       {% include "partials/social-links.njk" %}
     </div>
@@ -65,6 +66,7 @@ layout: layouts/base.njk
 {%- if albums.length %}
 <section class="container py-5">
   <h2 class="bsn-section-title">Photos <a class="bsn-more" href="/gallery/">See all</a></h2>
+  <p class="bsn-photo-date">{{ albums[0].title }}{% if albums[0].date %} · {{ albums[0].date }}{% endif %}</p>
   <div class="bsn-gallery">
     {%- for photo in albums[0].photos | head(6) %}
     {% galleryImage photo.path, photo.alt %}
@@ -91,6 +93,11 @@ layout: layouts/base.njk
 </section>
 {%- endif %}
 
-{% include "partials/venue-section.njk" %}
+<section class="container py-5 bsn-room-teaser">
+  <h2 class="bsn-section-title">The room</h2>
+  <p>A full stage in the back of <a href="https://www.thenewamericangrill.com/">The New American Grill</a> on Route 100.</p>
+  <p class="text-body-secondary mb-2">{{ venue.address.street }} · {{ venue.address.city }}, {{ venue.address.state }}</p>
+  <a class="bsn-more" href="/venue/">Find the room</a>
+</section>
 
 {%- if not albums.length and gallery.length %}{% include "partials/lightbox.njk" %}{% endif %}

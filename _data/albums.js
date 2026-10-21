@@ -4,6 +4,7 @@ const ALBUMS = [
   {
     slug: "mark-zaleski-band",
     title: "Mark Zaleski Band",
+    date: "Sep 12",
     cover: "/img/gallery/mark-zaleski-band/01-room.jpg",
   },
 ];

@@ -176,3 +176,7 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-signup input[type="email"] { flex: 1; min-width: 0; background: #111; color: inherit; border: 1px solid var(--bsn-line); border-radius: 0.4rem; padding: 0.5rem 0.8rem; }
 .bsn-signup input[type="email"]:focus { outline: 2px solid var(--bsn-accent); border-color: transparent; }
 .bsn-signup-hide { display: none; }
+
+.bsn-walkin { color: var(--bs-secondary-color); font-size: 0.95rem; }
+.bsn-photo-date { color: var(--bsn-accent); margin: -0.5rem 0 1rem; }
+.bsn-room-teaser { max-width: 40rem; }
