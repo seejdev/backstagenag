@@ -1,14 +1,17 @@
 <article class="bsn-card">
   <a class="bsn-card-link" href="{{ event.url }}">
+    {%- if event.data.image %}
+    <img class="bsn-card-thumb" src="{{ event.data.image }}" alt="">
+    {%- else %}
     <div class="bsn-date" aria-hidden="true">
       <span class="bsn-date-day">{{ event.date | dayNumber }}</span>
       <span class="bsn-date-month">{{ event.date | monthAbbr }}</span>
     </div>
+    {%- endif %}
     <div class="bsn-card-body">
       <h3 class="bsn-card-title">{{ event.data.title }}</h3>
       <p class="bsn-card-meta">
         <time datetime="{{ event.date | htmlDateString }}">{{ event.date | readableDate }}</time>
-        {%- if event.data.doors %} · Doors {{ event.data.doors }}{% endif %}
         {%- if event.data.showtime %} · Show {{ event.data.showtime }}{% endif %}
         {%- if event.data.price %} · {{ event.data.price }}{% endif %}
       </p>

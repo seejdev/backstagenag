@@ -1,9 +1,9 @@
 /* Backstage @ NAG — brand layer on top of Bootstrap 5.3 dark theme.
    Change --bsn-accent to re-color the whole site. */
 :root {
-  --bsn-accent: #f5a623;
-  --bsn-accent-hover: #ffc45c;
-  --bsn-accent-contrast: #1a1200;
+  --bsn-accent: #e8dcc8;
+  --bsn-accent-hover: #f6efe4;
+  --bsn-accent-contrast: #1a1610;
   --bsn-surface: #1c1c21;
   --bsn-line: rgba(255, 255, 255, 0.08);
   --bsn-display: "Bebas Neue", Impact, "Arial Narrow Bold", sans-serif;
@@ -34,15 +34,15 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 /* Hero */
 .bsn-hero {
   background:
-    linear-gradient(180deg, rgba(8, 8, 12, 0.55), rgba(8, 8, 12, 0.72)),
-    url("/img/site/hero-bg.jpg") center 42% / cover no-repeat;
+    linear-gradient(180deg, rgba(8, 8, 12, 0.42), rgba(8, 8, 12, 0.58)),
+    url("/img/site/venue-room.jpg") center 55% / cover no-repeat;
   border-bottom: 1px solid var(--bsn-line);
   min-height: 28rem;
 }
 .bsn-hero .container { text-align: center; }
 .bsn-hero-title { margin: 0; line-height: 0; }
-.bsn-hero-logo { display: block; width: min(34rem, 100%); height: auto; margin-inline: auto; }
-.bsn-kicker { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; color: var(--bsn-accent); margin-bottom: 0.5rem; }
+.bsn-hero-logo { display: block; width: min(26rem, 88%); height: auto; margin-inline: auto; }
+.bsn-kicker { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; color: #b7aa98; margin-bottom: 0.5rem; }
 
 /* Sections */
 .bsn-section-title { font-size: 2.25rem; display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; justify-content: center; }
@@ -102,7 +102,7 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 
 .bsn-hero-social .bsn-social { margin-bottom: 0; }
 .bsn-hero-social .bsn-social a { font-size: 2.15rem; color: #fff; }
-.bsn-open-mic { border-color: var(--bsn-accent); box-shadow: 0 0 0 1px var(--bsn-accent); }
+.bsn-open-mic { border-color: var(--bsn-line); box-shadow: none; }
 .bsn-open-mic-feature { max-width: 42rem; }
 .bsn-event .bsn-prose { margin-inline: 0; text-align: left; }
 
@@ -180,3 +180,10 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-walkin { color: var(--bs-secondary-color); font-size: 0.95rem; }
 .bsn-photo-date { color: var(--bsn-accent); margin: -0.5rem 0 1rem; }
 .bsn-room-teaser { max-width: 40rem; }
+
+.bsn-next { border: none; background: transparent; padding: 0.4rem 0 0; box-shadow: none; }
+.bsn-next-title { letter-spacing: 0.02em; }
+.bsn-next-date { color: #e8dcc8; }
+.bsn-next::after { content: ""; display: block; width: 3rem; height: 1px; margin: 0.7rem auto 0; background: #e8dcc8; }
+
+.bsn-card-thumb { width: 5.5rem; height: 5.5rem; object-fit: cover; border-radius: 0.3rem; flex: none; }
