@@ -10,8 +10,11 @@ linkText: Get tickets
 image: /img/events/2026-12-18-weakened-friends.jpg
 video: /img/events/2026-12-18-weakened-friends.mp4
 videoPoster: /img/events/2026-12-18-weakened-friends-poster.jpg
+band: /img/events/2026-12-18-weakened-friends.jpg
 ---
 
-A Portland, Maine trio. Sonia Sturino on guitar and vocals, Annie Hoffman on bass, Adam Hand on drums. They play loud, hooky indie rock that nods to the punkier end of ’90s alt-rock.
+A fuzzed-out, high-energy indie rock trio from Portland, Maine, known for punchy hooks, raw lyricism, and loud, cathartic live shows. Led by songwriter and guitarist Sonia Sturino, with Annie Hoffman on bass and Adam Hand on drums, they channel a mix of 90s alt-rock nostalgia and modern emotional intensity.
 
-Their records include Common Blah (2018), Quitter (2021), and Feels Like Hell (2025).
+Their third record, Feels Like Hell, is out now. Sonia sings about everything threatening to kill the spirit, and isn’t afraid to scream until their throat is raw.
+
+“Weakened Friends might be a DIY band, but they sound like they’re ready for the biggest stages.” — Stereogum

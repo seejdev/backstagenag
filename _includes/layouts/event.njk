@@ -4,9 +4,13 @@ layout: layouts/base.njk
 <article class="container py-5 bsn-event">
   <a class="text-body-secondary small" href="/events/">&larr; All shows</a>
   <div class="row g-5 mt-1 align-items-start">
-    {%- if image %}
-    <div class="col-md-5"><img class="img-fluid rounded bsn-poster" src="{{ image }}" alt="{{ title }}"></div>
-    {%- endif %}
+    <div class="col-md-5">
+      {%- if video %}
+      <video class="bsn-event-video" src="{{ video }}" controls playsinline preload="metadata" poster="{{ videoPoster or image }}"></video>
+      {%- elif image %}
+      <img class="img-fluid rounded bsn-poster" src="{{ image }}" alt="{{ title }}">
+      {%- endif %}
+    </div>
     <div class="col">
       <h1 class="display-3 mb-1">{{ title }}</h1>
       {%- if genre %}<p class="text-uppercase text-body-secondary small">{{ genre }}</p>{%- endif %}
@@ -18,9 +22,7 @@ layout: layouts/base.njk
       </ul>
       {%- if link %}<a class="btn btn-accent btn-lg mb-4" href="{{ link }}" rel="noopener">{{ linkText or "Facebook event" }}</a>{%- endif %}
       <div class="bsn-prose text-start">{{ content | safe }}</div>
-      {%- if video %}
-      <video class="bsn-event-video mt-4" src="{{ video }}" controls playsinline preload="metadata" poster="{{ videoPoster or image }}"></video>
-      {%- endif %}
+      {%- if band %}<img class="bsn-band mt-4" src="{{ band }}" alt="{{ title }}">{%- endif %}
     </div>
   </div>
 </article>
