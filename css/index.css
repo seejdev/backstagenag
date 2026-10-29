@@ -81,6 +81,7 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 /* Event detail */
 .bsn-poster { max-width: 100%; }
 .bsn-meta li { margin-bottom: 0.25rem; }
+.bsn-event-video { width: 360px; max-width: 100%; border-radius: 8px; display: block; }
 
 /* Gallery */
 .bsn-gallery { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }

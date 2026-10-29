@@ -16,8 +16,11 @@ layout: layouts/base.njk
         {%- if showtime %}<li><span class="text-body-secondary">Show</span> {{ showtime }}</li>{%- endif %}
         {%- if price %}<li><span class="text-body-secondary">Cover</span> {{ price }}</li>{%- endif %}
       </ul>
-      {%- if link %}<a class="btn btn-accent btn-lg mb-4" href="{{ link }}" rel="noopener">Facebook event</a>{%- endif %}
+      {%- if link %}<a class="btn btn-accent btn-lg mb-4" href="{{ link }}" rel="noopener">{{ linkText or "Facebook event" }}</a>{%- endif %}
       <div class="bsn-prose text-start">{{ content | safe }}</div>
+      {%- if video %}
+      <video class="bsn-event-video mt-4" src="{{ video }}" controls playsinline preload="metadata" poster="{{ videoPoster or image }}"></video>
+      {%- endif %}
     </div>
   </div>
 </article>
