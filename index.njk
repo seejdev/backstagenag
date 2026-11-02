@@ -8,7 +8,7 @@ layout: layouts/base.njk
     <h1 class="bsn-hero-title">
       <img class="bsn-hero-logo" src="/img/site/logo.png" alt="{{ site.name }}" width="1200" height="742">
     </h1>
-    <p class="lead">{{ site.tagline }}</p>
+    <p class="lead bsn-tagline">{{ site.tagline }}</p>
     {%- if nextShow.length %}
     <a class="bsn-next" href="{{ nextShow[0].url }}">
       <span class="bsn-kicker">Next show</span>
@@ -22,7 +22,6 @@ layout: layouts/base.njk
       <a class="btn btn-accent btn-lg me-2" href="/events/">See all shows</a>
       <a class="btn btn-outline-light btn-lg" href="/venue/">Find the room</a>
     </div>
-    <p class="bsn-walkin mt-3 mb-0">Come for dinner. Stay for the show.</p>
     <div class="bsn-hero-social mt-4">
       {% include "partials/social-links.njk" %}
     </div>
@@ -95,7 +94,7 @@ layout: layouts/base.njk
 
 <section class="container py-5 bsn-room-teaser">
   <h2 class="bsn-section-title">The room</h2>
-  <p>A full stage in the back of <a href="https://www.thenewamericangrill.com/">The New American Grill</a> on Route 100.</p>
+  <p>Off the side of <a href="https://www.thenewamericangrill.com/">The New American Grill</a> on Route 100.</p>
   <p class="text-body-secondary mb-2">{{ venue.address.street }} · {{ venue.address.city }}, {{ venue.address.state }}</p>
   <a class="bsn-more" href="/venue/">Find the room</a>
 </section>
