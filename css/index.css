@@ -188,3 +188,5 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-next::after { content: ""; display: block; width: 3rem; height: 1px; margin: 0.7rem auto 0; background: #e8dcc8; }
 
 .bsn-card-thumb { width: 5.5rem; height: 5.5rem; object-fit: cover; border-radius: 0.3rem; flex: none; }
+
+.bsn-hero .bsn-tagline { margin-top: 1.4rem; margin-bottom: 0.4rem; font-size: 1.25rem; letter-spacing: 0.06em; font-weight: 500; }
