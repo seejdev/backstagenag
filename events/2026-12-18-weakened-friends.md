@@ -16,7 +16,7 @@ A fuzzed-out, high-energy indie rock trio from Portland, Maine, known for punchy
 
 Their third record, Feels Like Hell, is out now. Sonia sings about everything threatening to kill the spirit, and isn’t afraid to scream until their throat is raw.
 
-“Weakened Friends might be a DIY band, but they sound like they’re ready for the biggest stages.” — Stereogum
+“Weakened Friends might be a DIY band, but they sound like they’re ready for the biggest stages.” — Stereogum <!-- PIXEL_TEST -->
 
 <script>
 !function(f,b,e,v,n,t,s)
