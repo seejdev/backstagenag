@@ -81,7 +81,7 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 /* Event detail */
 .bsn-poster { max-width: 100%; }
 .bsn-meta li { margin-bottom: 0.25rem; }
-.bsn-event-video { width: 360px; max-width: 100%; border-radius: 8px; display: block; }
+.bsn-event-video { width: 100%; max-width: 420px; max-height: 560px; object-fit: cover; border-radius: 0.5rem; display: block; }
 
 /* Gallery */
 .bsn-gallery { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
@@ -190,3 +190,5 @@ h1, h2, h3, .display-3, .display-4, .bsn-brand {
 .bsn-card-thumb { width: 5.5rem; height: 5.5rem; object-fit: cover; border-radius: 0.3rem; flex: none; }
 
 .bsn-hero .bsn-tagline { margin-top: 1.4rem; margin-bottom: 0.4rem; font-size: 1.25rem; letter-spacing: 0.06em; font-weight: 500; }
+
+.bsn-band { width: 100%; max-width: 28rem; border-radius: 0.5rem; display: block; }
