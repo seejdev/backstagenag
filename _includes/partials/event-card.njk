@@ -1,7 +1,7 @@
 <article class="bsn-card">
   <a class="bsn-card-link" href="{{ event.url }}">
-    {%- if event.data.image %}
-    <img class="bsn-card-thumb" src="{{ event.data.image }}" alt="">
+    {%- if event.data.thumb or event.data.image %}
+    <img class="bsn-card-thumb" src="{{ event.data.thumb or event.data.image }}" alt="">
     {%- else %}
     <div class="bsn-date" aria-hidden="true">
       <span class="bsn-date-day">{{ event.date | dayNumber }}</span>
