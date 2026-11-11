@@ -5,7 +5,7 @@ doors: "7:00 PM"
 showtime: "8:00 PM"
 price: "Tickets"
 genre: Indie rock
-link: https://square.link/u/psfO8gTt
+link: https://www.eventbrite.com/e/weakened-friends-feels-like-hell-tour-at-backstage-nag-tickets-2004716877145
 linkText: Get tickets
 image: /img/events/2026-12-18-weakened-friends.jpg
 video: /img/events/2026-12-18-weakened-friends.mp4
