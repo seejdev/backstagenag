@@ -3,7 +3,7 @@ title: Weakened Friends
 date: 2026-12-18
 doors: "7:00 PM"
 showtime: "8:00 PM"
-price: "Tickets"
+price: "$25 advance / $30 day of"
 genre: Indie rock
 link: https://www.eventbrite.com/e/weakened-friends-feels-like-hell-tour-at-backstage-nag-tickets-2004716877145
 linkText: Get tickets
