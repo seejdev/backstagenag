@@ -4,6 +4,7 @@ date: 2027-03-13
 doors: "6:00 PM"
 showtime: "8:00 PM"
 genre: Rock / Americana / Folk
+price: "$30 advance / $35 day of"
 image: /img/events/2027-03-13-hayley-jane-band.jpg
 thumb: /img/events/2027-03-13-hayley-jane-band.jpg
 ---
